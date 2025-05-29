@@ -1,0 +1,79 @@
+# ==================== #
+# MERN Stack .gitignore
+# ==================== #
+
+### Node.js ###
+# Dependencies
+node_modules/
+.pnpm/
+.yarn/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+### MongoDB ###
+/data/db/
+*.ns
+*.0
+*.1
+
+### Express (Backend) ###
+# Build files
+dist/
+build/
+
+# Debug logs
+logs/
+*.log
+
+### React (Frontend) ###
+# Build files
+client/build/
+client/.next/
+client/out/
+
+# Dependencies
+client/node_modules/
+
+# Cache
+client/.cache/
+
+# Next.js
+client/.next/
+
+# Production
+client/.env.production.local
+
+# Debug
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+
+### macOS ###
+.DS_Store
+
+### Windows ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
