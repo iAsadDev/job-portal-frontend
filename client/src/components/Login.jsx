@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { setToken } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext"; // 👈 import context
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
-  const navigate = useNavigate();
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { loginSuccess } = useContext(AuthContext); // 👈 get function
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
+  // const handleChange = (e) =>
+  //   setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange= (e) =>{
+    setForm({...form, [e.target.name]: e.target.value});
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:4000/api/auth/login", form);
       setToken(res.data.token);
+      loginSuccess(); // 👈 update context immediately
       navigate("/");
     } catch (err) {
       setError("Invalid email or password", err);
     }
   };
-
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-md">

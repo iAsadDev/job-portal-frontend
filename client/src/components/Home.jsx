@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
 
 const Home = () => {
   return (
     <div className="font-sans text-gray-800">
       {/* HERO SECTION */}
-      <Navbar />
       <header className="bg-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-6 py-20 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">Find Your Dream Job</h1>
