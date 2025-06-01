@@ -10,13 +10,14 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./components/About";
-import Contact from "./components/Contact";
 import { AuthProvider } from "./context/authContext";
 import Navbar from "./components/Navbar";
 import JobCreateForm from "./components/JobCreate";
 import JobsList from "./components/JobList";
 import JobDetails from "./components/JobDetails";
 import { JobProvider } from "./context/jobContext";
+import MyJobs from "./components/Myjobs";
+import JobEditForm from "./components/JobEditform";
 
 const App = () => {
   return (
@@ -60,12 +61,20 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/my-jobs" element={<ProtectedRoute><MyJobs /></ProtectedRoute>}></Route>
+          <Route
+  path="/jobs/edit/:id"
+  element={
+    <ProtectedRoute>
+      <JobEditForm />
+    </ProtectedRoute>
+  }
+/>
           {/* Job details protected */}
           {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
 
           {/* Redirect any unknown route to home */}
           <Route path="*" element={<Navigate to="/" replace />} />

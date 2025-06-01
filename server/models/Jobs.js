@@ -24,6 +24,10 @@ const JobSchema  = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    contact: {
+        type: String,
+        required: true,
+    },
     requirements: {
         type: String,
         required: true,

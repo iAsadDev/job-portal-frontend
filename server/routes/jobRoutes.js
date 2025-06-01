@@ -6,7 +6,7 @@ const router = express.Router()
 router.post('/create', authMiddleware, async (req, res) => {
     try {
       const {
-        title, description, company, location, salary, requirements, jobType
+        title, description, company, contact,location, salary, requirements, jobType
       } = req.body;
   
       const newJob = new Job({
@@ -17,6 +17,7 @@ router.post('/create', authMiddleware, async (req, res) => {
         salary,
         requirements,
         jobType,
+        contact,
         createdBy: req.user.id // 👈 taken from token
       });
   
@@ -36,6 +37,14 @@ router.get("/all-jobs" , async (req, res, next) => {
         res.status(500).json({ error: "Failed to fetch jobs" });
     }
 });
+router.get("/my-jobs", authMiddleware, async (req, res) => {
+    try {
+      const userJobs = await Job.find({ createdBy: req.user.id });
+      res.status(200).json(userJobs);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch user jobs" });
+    }
+  });
 router.get("/:id", async (req, res,next) => {
     try{
         const jobId = req.params.id;

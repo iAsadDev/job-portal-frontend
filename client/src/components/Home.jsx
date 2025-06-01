@@ -11,7 +11,7 @@ const Home = () => {
           <p className="text-lg md:text-xl mb-6">
             Join thousands of professionals hiring or applying through JobHunt.
           </p>
-          <Link to="/jobs">
+          <Link to="/jobs/all-jobs">
             <button className="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-100 transition">
               Explore Jobs
             </button>

@@ -34,13 +34,12 @@ const Navbar = () => {
             <Link to="/jobs/create" className="text-gray-700 hover:text-blue-600">
               Create Job
             </Link>
+            <Link to="/my-jobs"  className="text-gray-700 hover:text-blue-600">My Jobs</Link>
 
             <Link to="/about" className="text-gray-700 hover:text-blue-600">
               About
             </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-blue-600">
-              Contact
-            </Link>
+            
 
             {isAuthenticated ? (
               <button
@@ -118,12 +117,12 @@ const Navbar = () => {
           >
             Create Job
           </Link>
+          <Link to="/my-jobs"  className="text-gray-700 hover:text-blue-600">My Jobs</Link>
+
           <Link to="/about" className="block text-gray-700 hover:text-blue-600">
             About
           </Link>
-          <Link to="/contact" className="block text-gray-700 hover:text-blue-600">
-            Contact
-          </Link>
+         
 
           {isAuthenticated ? (
             <button

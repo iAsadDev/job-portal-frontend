@@ -46,6 +46,7 @@ const JobDetails = () => {
         <div><strong>Salary:</strong> {job.salary}</div>
         <div><strong>Requirements:</strong> {job.requirements}</div>
         <div><strong>Job Type:</strong> {job.jobType}</div>
+        <div><strong>Contact:</strong> {job.contact}</div>
       </div>
         <div className="mt-6 flex justify-between">
         <button

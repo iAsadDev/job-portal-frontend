@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { getToken } from '../utils/auth'; // ✅ Adjust the path as needed
 
 const JobCreateForm = () => {
@@ -10,10 +11,12 @@ const JobCreateForm = () => {
     location: '',
     salary: '',
     requirements: '',
+    contact: '',
     jobType: 'Full-time',
   });
 
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,21 +28,18 @@ const JobCreateForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const token = getToken();
-    console.log("Token in frontend:", token);
-  
     if (!token) {
       setMessage('User not authenticated. Please log in.');
       return;
     }
-  
+
     try {
-      const res = await axios.post('http://localhost:4000/api/jobs/create', formData, {
+      await axios.post('http://localhost:4000/api/jobs/create', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setMessage('Job created successfully!');
-      console.log(res.data);
+      navigate('/all-jobs'); // 🔁 Redirect after success
     } catch (err) {
       console.error("Error response:", err.response);
       setMessage(err.response?.data?.message || 'Failed to create job');
@@ -56,7 +56,8 @@ const JobCreateForm = () => {
           { label: 'Company', name: 'company' },
           { label: 'Location', name: 'location' },
           { label: 'Salary', name: 'salary', type: 'number' },
-          { label: 'Requirements', name: 'requirements' }
+          { label: 'Requirements', name: 'requirements' },
+          { label: 'Contact', name: 'contact' },
         ].map(({ label, name, type = 'text' }) => (
           <div key={name}>
             <label className="block text-sm font-medium">{label}</label>
@@ -94,7 +95,7 @@ const JobCreateForm = () => {
         </button>
 
         {message && (
-          <p className="text-center text-sm mt-2 text-green-600">{message}</p>
+          <p className="text-center text-sm mt-2 text-red-600">{message}</p>
         )}
       </form>
     </div>
