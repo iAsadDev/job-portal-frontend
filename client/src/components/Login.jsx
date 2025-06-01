@@ -18,7 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", form);
+      const res = await axios.post("https://job-portal-backend-production-5ffc.up.railway.app/api/auth/login", form);
       setToken(res.data.token);
       loginSuccess(); // 👈 update context immediately
       navigate("/");

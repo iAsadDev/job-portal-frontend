@@ -11,7 +11,7 @@ const MyJobs = () => {
   useEffect(() => {
     const fetchMyJobs = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/jobs/my-jobs', {
+        const res = await axios.get('https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/my-jobs', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -30,7 +30,7 @@ const MyJobs = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this job?")) return;
     try {
-      await axios.delete(`http://localhost:4000/api/jobs/${id}`, {
+      await axios.delete(`https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setJobs(jobs.filter(job => job._id !== id));

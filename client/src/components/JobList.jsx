@@ -15,7 +15,7 @@ const JobsList = () => {
       setLoading(true);
       setError("");
       try {
-        const res = await axios.get("http://localhost:4000/api/jobs/all-jobs");
+        const res = await axios.get("https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/all-jobs");
         setJobs(res.data);
       } catch (err) {
         setError("Failed to fetch jobs: " + (err.response?.data?.error || err.message));

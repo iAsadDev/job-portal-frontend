@@ -26,7 +26,7 @@ const JobDetails = () => {
       setLoading(true);
       setError("");
       try {
-        const res = await axios.get(`http://localhost:4000/api/jobs/${selectedJobId}`);
+        const res = await axios.get(`https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/${selectedJobId}`);
         setJob(res.data);
       } catch {
         setError("❌ Failed to fetch job details.");

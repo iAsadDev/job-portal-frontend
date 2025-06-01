@@ -22,7 +22,7 @@ const JobEditForm = () => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/jobs/${id}`, {
+        const res = await axios.get(`https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -57,7 +57,7 @@ const JobEditForm = () => {
     e.preventDefault();
     setUpdating(true);
     try {
-      await axios.put(`http://localhost:4000/api/jobs/${id}`, formData, {
+      await axios.put(`https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/${id}`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/my-jobs");

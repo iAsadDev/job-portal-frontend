@@ -36,7 +36,7 @@ const JobCreateForm = () => {
     }
 
     try {
-      await axios.post('http://localhost:4000/api/jobs/create', formData, {
+      await axios.post('https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/create', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       navigate('/all-jobs'); // 🔁 Redirect after success
