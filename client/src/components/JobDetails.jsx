@@ -2,6 +2,15 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { JobContext } from "../context/jobContext";
 import { useNavigate } from "react-router-dom";
+import {
+  Briefcase,
+  Building,
+  MapPin,
+  DollarSign,
+  FileText,
+  Phone,
+  BadgeCheck,
+} from "lucide-react";
 
 const JobDetails = () => {
   const { selectedJobId } = useContext(JobContext);
@@ -20,7 +29,7 @@ const JobDetails = () => {
         const res = await axios.get(`http://localhost:4000/api/jobs/${selectedJobId}`);
         setJob(res.data);
       } catch {
-        setError("Failed to fetch job details");
+        setError("❌ Failed to fetch job details.");
       } finally {
         setLoading(false);
       }
@@ -35,25 +44,58 @@ const JobDetails = () => {
   if (!job) return null;
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Job Details</h2>
+    <div className="max-w-3xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-lg border border-gray-100">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+        <Briefcase className="text-blue-600" /> Job Details
+      </h2>
 
-      <div className="space-y-4 text-gray-700">
-        <div><strong>Title:</strong> {job.title}</div>
-        <div><strong>Description:</strong> {job.description}</div>
-        <div><strong>Company:</strong> {job.company}</div>
-        <div><strong>Location:</strong> {job.location}</div>
-        <div><strong>Salary:</strong> {job.salary}</div>
-        <div><strong>Requirements:</strong> {job.requirements}</div>
-        <div><strong>Job Type:</strong> {job.jobType}</div>
-        <div><strong>Contact:</strong> {job.contact}</div>
+      <div className="space-y-4 text-gray-700 text-base leading-relaxed">
+        <div className="flex items-center gap-2">
+          <BadgeCheck className="text-green-600" />
+          <strong>Title:</strong> {job.title}
+        </div>
+        <div className="flex items-start gap-2">
+          <FileText className="text-purple-600 mt-1" />
+          <div>
+            <strong>Description:</strong>
+            <p className="ml-1 text-sm text-gray-600">{job.description}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Building className="text-indigo-600" />
+          <strong>Company:</strong> {job.company}
+        </div>
+        <div className="flex items-center gap-2">
+          <MapPin className="text-pink-600" />
+          <strong>Location:</strong> {job.location}
+        </div>
+        <div className="flex items-center gap-2">
+          <DollarSign className="text-emerald-600" />
+          <strong>Salary:</strong> {job.salary}
+        </div>
+        <div className="flex items-start gap-2">
+          <FileText className="text-orange-600 mt-1" />
+          <div>
+            <strong>Requirements:</strong>
+            <p className="ml-1 text-sm text-gray-600">{job.requirements}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Briefcase className="text-blue-600" />
+          <strong>Job Type:</strong> {job.jobType}
+        </div>
+        <div className="flex items-center gap-2">
+          <Phone className="text-gray-600" />
+          <strong>Contact:</strong> {job.contact}
+        </div>
       </div>
-        <div className="mt-6 flex justify-between">
+
+      <div className="mt-8 flex justify-end">
         <button
           onClick={() => navigate("/jobs/all-jobs")}
-          className="border border-gray-300 bg-gray-100 px-4 py-2 rounded-lg hover:bg-gray-200"
+          className="bg-gray-100 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-200 transition"
         >
-          Back to Jobs List
+          ← Back to Jobs List
         </button>
       </div>
     </div>
