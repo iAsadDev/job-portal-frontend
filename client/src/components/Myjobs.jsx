@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -11,7 +12,7 @@ const MyJobs = () => {
   useEffect(() => {
     const fetchMyJobs = async () => {
       try {
-        const res = await axios.get('https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/my-jobs', {
+        const res = await axios.get(`${baseURL}/jobs/my-jobs`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -30,7 +31,7 @@ const MyJobs = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this job?")) return;
     try {
-      await axios.delete(`https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/${id}`, {
+      await axios.delete(`${baseURL}/jobs/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setJobs(jobs.filter(job => job._id !== id));

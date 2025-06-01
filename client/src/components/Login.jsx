@@ -3,6 +3,7 @@ import axios from "axios";
 import { setToken } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext"; // 👈 import context
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -18,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://job-portal-backend-production-5ffc.up.railway.app/api/auth/login", form);
+      const res = await axios.post(`${baseURL}/auth/login`, form);
       setToken(res.data.token);
       loginSuccess(); // 👈 update context immediately
       navigate("/");

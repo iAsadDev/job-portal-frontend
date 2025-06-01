@@ -18,6 +18,7 @@ const JobDetails = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     if (!selectedJobId) return;
@@ -26,7 +27,7 @@ const JobDetails = () => {
       setLoading(true);
       setError("");
       try {
-        const res = await axios.get(`https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/${selectedJobId}`);
+        const res = await axios.get(`${baseURL}/jobs/${selectedJobId}`);
         setJob(res.data);
       } catch {
         setError("❌ Failed to fetch job details.");

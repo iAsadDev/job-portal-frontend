@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { getToken } from '../utils/auth'; // ✅ Adjust the path as needed
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const JobCreateForm = () => {
   const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ const JobCreateForm = () => {
     }
 
     try {
-      await axios.post('https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/create', formData, {
+      await axios.post(`${baseURL}/jobs/create`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       navigate('/all-jobs'); // 🔁 Redirect after success

@@ -9,13 +9,14 @@ const JobsList = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchJobs = async () => {
       setLoading(true);
       setError("");
       try {
-        const res = await axios.get("https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/all-jobs");
+        const res = await axios.get(`${baseURL}/jobs/all-jobs`);
         setJobs(res.data);
       } catch (err) {
         setError("Failed to fetch jobs: " + (err.response?.data?.error || err.message));

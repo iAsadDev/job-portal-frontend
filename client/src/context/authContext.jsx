@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     if (token) {
       axios
-        .get("https://job-portal-backend-production-5ffc.up.railway.app/api/auth/", {
+        .get("${baseURL}auth/", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {

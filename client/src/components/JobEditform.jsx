@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const JobEditForm = () => {
   const { id } = useParams();
@@ -22,7 +23,7 @@ const JobEditForm = () => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const res = await axios.get(`https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/${id}`, {
+        const res = await axios.get(`${baseURL}/jobs/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -57,7 +58,7 @@ const JobEditForm = () => {
     e.preventDefault();
     setUpdating(true);
     try {
-      await axios.put(`https://job-portal-backend-production-5ffc.up.railway.app/api/jobs/${id}`, formData, {
+      await axios.put(`${baseURL}/jobs/${id}`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/my-jobs");
