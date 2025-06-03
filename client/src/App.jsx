@@ -8,7 +8,7 @@ import {
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Home from "./components/Home";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/protectedRoute";
 import About from "./components/About";
 import { AuthProvider } from "./context/authContext";
 import Navbar from "./components/Navbar";
