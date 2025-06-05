@@ -7,7 +7,7 @@ const Register = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const baseURL = import.meta.env.VITE_API_BASE_URL;
+  
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -15,7 +15,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${baseURL}/auth/register`, form);
+      const res = await axios.post(`https://jobhuntportal-z.netlify.app/auth/register`, form);
       setToken(res.data.token);
       navigate("/login");
     } catch (err) {
